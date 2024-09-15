@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planetário de Brasília Luiz Cruls</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        /* Cabeçalho */ 
+        header {
+            background-color: #7a5c95;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Navegação */
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #53345f;
+            padding: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: #ddd;
+        }
+
+        /* Seletor de Idioma */
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #fff;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .language-switcher select {
+            border: none;
+            background-color: transparent;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* Conteúdo Principal */
+        .content {
+            background-image: url('https://secti.df.gov.br/wp-conteudo/uploads/2017/09/WhatsApp-Image-2019-06-29-at-11.53.43-1.jpeg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        section {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Estilos para os botões de ajuste de fonte */
+        .font-control {
+            position: absolute;
+            top: 20px;
+            right: 180px; /* Ajuste este valor para posicionar os botões */
+            display: flex;
+            align-items: center;
+        }
+
+        .font-control button {
+            background: none;
+            border: none;
+            font-size: 1.5em; /* Aumentar o tamanho da fonte */
+            cursor: pointer;
+            margin: 0 10px; /* Aumentar o espaçamento */
+            padding: 8px 12px; /* Aumentar o padding */
+            border-radius: 5px;
+            transition: background-color 0.2s ease-in-out;
+            color: #7a5c95; /* Cor do texto */
+            border: 2px solid #53345f; 
+            border-radius: 5px; /* Rounded corners */
+            background-color: #f0f0f0; /* Light gray background */
+        }
+
+        .font-control button:hover {
+            background-color: #e0e0e0; /* Slightly darker gray on hover */
+            color: #7a5c95; /* Change text color on hover */
+        }
+
+        /* Estilos Responsivos */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+
+            .content h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Botão Voltar ao Topo */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none; /* Oculto inicialmente */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #b09be3; /* Lilás */
+            color: white;
+            opacity: 0.7; /* 70% Opacidade */
+            cursor: pointer;
+        }
+		
+		/* Basic styling for the button */
+#darkModeButton {
+    background-color: #FFFFFF; /* Purple background */
+    color: black;          
+    border: none;           /* No border */
+    padding: 10px 20px;      /* Padding for better visual appearance */
+    cursor: pointer;        /* Change cursor to a pointer on hover */
+    border-radius: 5px;     /* Rounded corners */
+    font-size: 16px;        /* Adjust font size as needed */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+
+        #backToTop:hover {
+            opacity: 1; /* Opacidade total ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="header-title">Planetário de Brasília Luiz Cruls</h1>
+        <div class="language-switcher">
+            🌐 <select id="language-select">
+                <option value="pt">Português</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="ko">한국어</option>
+            </select>
+        </div>
+        <div class="font-control">
+            <button onclick="decreaseFontSize()">A-</button>
+            <button onclick="increaseFontSize()">A+</button>
+        </div>
+    </header>
+
+    <nav>
+        <a id="link-planetario" href="#">O Planetário</a>
+        <a id="link-como-chegar" href="#">Como Chegar</a>
+        <a id="link-cupula" href="#">A Cúpula</a>
+        <a id="link-visita-virtual" href="#">Visita Virtual</a>
+    </nav>
+
+    <div id="main-content" class="content">
+        <h1>Planetário de Brasília Luiz Cruls</h1>
+    </div>
+
+    <section id="dynamic-section">
+        <!-- Conteúdo dinâmico será inserido aqui -->
+    </section>
+
+    <button id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+        </svg>
+    </button>
+
+    <script>
+        // Language data (Portuguese)
+const langData_pt = {
+    'planetario': {
+        title: "O Planetário",
+        content: `<h2>O Planetário</h2>
+                  <p>O <strong>Planetário de Brasília Luiz Cruls</strong>, fundado em 15 de março de 1974, oferece uma experiência única de observação e aprendizado sobre o universo. Ele recebeu esse nome oficialmente em 2021 para homenagear o astrônomo e geodesista belga que liderou a Comissão Exploradora do Planalto Central (Conhecida como “Missão Cruls”). A entrada é gratuita, e o horário de visitação é de terça a domingo, das 8h às 18h.</p>
+                  <p>Assim como descrito na própria página do Planetário, é um equipamento público com ambiente voltado à educação e divulgação científica, além de um espaço cultural, histórico e de entretenimento.</p>
+                  <p>Além disso, este ano ele está completando 50 anos de uma história repleta de fomentação do interesse em astronomia na capital federal.</p>`,
+        backgroundImage: 'https://secti.df.gov.br/wp-conteudo/uploads/2017/09/WhatsApp-Image-2019-06-29-at-11.53.43-1.jpeg',
+    },
+    'como-chegar': {
+        title: "Como Chegar",
+        content: `<h2>Como Chegar</h2>
+                  <p>Linhas de ônibus disponíveis: <strong>108, 208, 508</strong>. Localizado próximo à rodoviária de Brasília, o Planetário é de fácil acesso a pé.</p>
+                  <p>O prédio tem três mil metros quadrados de área construída e fica em um lugar privilegiado: entre a Torre de TV e o Centro de Convenções Ulysses Guimarães.</p>`,
+        backgroundImage: 'https://cdn.jornaldebrasilia.com.br/wp-content/uploads/2021/10/11143208/PLANETARIO_FOTO-CLAUDIO-BERGER-scaled-1-e1633973556853.jpg',
+    },
+    'cupula': {
+        title: "A Cúpula",
+        content: `<h2>A Cúpula</h2>
+                  <p>Localizada no Térreo e onde se projeta filmes pedagógicos sobre astronomia, astronáutica e cosmologia através dos projetores <strong>Space Master</strong>, um equipamento analógico que está presente no espaço desde 1970; e <strong>Power Dome VIII</strong> que foi desenvolvido pela empresa alemã Carl Zeiss. Ele é formado por oito projetores laterais e 12 caixas acústicas, que aumentam a sensação de realidade do filme projetado.</p>`,
+        backgroundImage: 'https://perfildosmunicipios.com.br/wp-content/uploads/2019/07/F%C3%A9rias-no-Planet%C3%A1rio-um-encontro-l%C3%BAdico-e-educativo.jpg',
+    },
+    'visita-virtual': {
+        title: "Visita Virtual",
+        content: `<h2>Visita Virtual</h2>
+                  <p>Assista ao vídeo de visita virtual ao Planetário:</p>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/1jkkOVH0e9k?si=ig7f_in8jD5nuT5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+        backgroundImage: 'https://www.acordadf.com.br/wp-content/uploads/2021/07/4444CD2E-8FB5-4AB2-AC99-86DABB7E2C86.jpeg',
+    },
+    menu: ["O Planetário", "Como Chegar", "A Cúpula", "Visita Virtual"]
+};
+
+// Language data (English)
+const langData_en = {
+    'planetario': {
+        title: "The Planetarium",
+        content: `<h2>The Planetarium</h2>
+                  <p>The <strong>Brasília Luiz Cruls Planetarium</strong>, founded on March 15, 1974, offers a unique experience for observing and learning about the universe. It was officially named in 2021 to honor the Belgian astronomer and geodesist who led the Central Plateau Exploring Commission (known as the “Cruls Mission”). Admission is free, and visiting hours are from Tuesday to Sunday, from 8 AM to 6 PM.</p>
+                  <p>As described on the Planetarium's own page, it is a public facility focused on education and scientific dissemination, as well as a cultural, historical, and entertainment space.</p>
+                  <p>Additionally, this year marks its 50th anniversary, celebrating a history rich in fostering interest in astronomy in the federal capital.</p>`,
+        backgroundImage: 'https://secti.df.gov.br/wp-conteudo/uploads/2017/09/WhatsApp-Image-2019-06-29-at-11.53.43-1.jpeg',
+    },
+    'como-chegar': {
+        title: "How to Get There",
+        content: `<h2>How to Get There</h2>
+                  <p>Available bus lines: <strong>108, 208, 508</strong>. Located near the Brasília bus station, the Planetarium is easily accessible on foot.</p>
+                  <p>The building has three thousand square meters of constructed area and is in a prime location: between the TV Tower and the Ulysses Guimarães Convention Center.</p>`,
+        backgroundImage: 'https://cdn.jornaldebrasilia.com.br/wp-content/uploads/2021/10/11143208/PLANETARIO_FOTO-CLAUDIO-BERGER-scaled-1-e1633973556853.jpg',
+    },
+    'cupula': {
+        title: "The Dome",
+        content: `<h2>The Dome</h2>
+                  <p>The planetarium dome features modern projectors that provide an immersive experience in universe projections.</p>`,
+        backgroundImage: 'https://perfildosmunicipios.com.br/wp-content/uploads/2019/07/F%C3%A9rias-no-Planet%C3%A1rio-um-encontro-l%C3%BAdico-e-educativo.jpg',
+    },
+    'visita-virtual': {
+        title: "Virtual Tour",
+        content: `<h2>Virtual Tour</h2>
+                  <p>Watch the virtual tour video of the Planetarium:</p>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/1jkkOVH0e9k?si=ig7f_in8jD5nuT5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+        backgroundImage: 'https://www.acordadf.com.br/wp-content/uploads/2021/07/4444CD2E-8FB5-4AB2-AC99-86DABB7E2C86.jpeg',
+    },
+    menu: ["The Planetarium", "How to Get There", "The Dome", "Virtual Tour"]
+};
+
+// Language data (Spanish)
+const langData_es = {
+    'planetario': {
+        title: "El Planetario",
+        content: `<h2>El Planetario</h2>
+                  <p>El<strong>Planetario de Brasilia Luiz Cruls</strong>, fundado el 15 de marzo de 1974, ofrece una experiencia única de observación y aprendizaje sobre el universo. Recibió este nombre oficialmente en 2021 para honrar al astrónomo y geodesta belga que lideró la Comisión Exploradora del Planalto Central (conocida como “Misión Cruls”). La entrada es gratuita y el horario de visita es de martes a domingo, de 8 a 18 horas.</p>
+                  <p>Como se describe en la página del propio Planetario, es una instalación pública con un ambiente orientado a la educación y divulgación científica, además de ser un espacio cultural, histórico y de entretenimiento.</p>
+                  <p>Además, este año está celebrando 50 años de una historia llena de fomento al interés en la astronomía en la capital federal.</p>`,
+        backgroundImage: 'https://secti.df.gov.br/wp-conteudo/uploads/2017/09/WhatsApp-Image-2019-06-29-at-11.53.43-1.jpeg',
+    },
+    'como-chegar': {
+        title: "Cómo Llegar",
+        content: `<h2>Cómo Llegar</h2>
+                  <p>Líneas de autobuses disponibles:  <strong>108, 208, 508</strong>. Ubicado cerca de la estación de autobuses de Brasilia, el Planetarium es de fácil acceso a pie.</p>
+                  <p>El edificio tiene tres mil metros cuadrados de área construida y se encuentra en una ubicación privilegiada: entre la Torre de TV y el Centro de Convenciones Ulysses Guimarães.</p>`,
+        backgroundImage: 'https://cdn.jornaldebrasilia.com.br/wp-content/uploads/2021/10/11143208/PLANETARIO_FOTO-CLAUDIO-BERGER-scaled-1-e1633973556853.jpg',
+    },
+    'cupula': {
+        title: "La Cúpula",
+        content: `<h2>La Cúpula</h2>
+                  <p>La cúpula del planetario cuenta con proyectores modernos que proporcionan una experiencia inmersiva en las proyecciones sobre el universo.</p>`,
+        backgroundImage: 'https://perfildosmunicipios.com.br/wp-content/uploads/2019/07/F%C3%A9rias-no-Planet%C3%A1rio-um-encontro-l%C3%BAdico-e-educativo.jpg',
+    },
+    'visita-virtual': {
+        title: "Visita Virtual",
+        content: `<h2>Visita Virtual</h2>
+                  <p>Ve el video de la visita virtual al Planetario:</p>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/1jkkOVH0e9k?si=ig7f_in8jD5nuT5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+        backgroundImage: 'https://www.acordadf.com.br/wp-content/uploads/2021/07/4444CD2E-8FB5-4AB2-AC99-86DABB7E2C86.jpeg',
+    },
+    menu: ["El Planetario", "Cómo Llegar", "La Cúpula", "Visita Virtual"]
+};
+
+// Language data (Korean)
+const langData_ko = {
+    'planetario': {
+        title: "플라네타리움",
+        content: `<h2>플라네타리움</h2>
+                  <p><strong>브라질리아 루이스 크룰스 천문대는</strong>, 1974년 3월 15일에 설립되어 우주에 대한 관찰과 학습을 위한 독특한 경험을 제공합니다. 이 천문대는 2021년에 벨기에의 천문학자이자 지구측량가인 루이스 크룰스를 기리기 위해 공식적으로 명명되었습니다. 그는 중앙 고원 탐사 위원회(‘크룰스 미션’으로 알려진)를 이끌었습니다. 입장은 무료이며, 관람 시간은 화요일부터 일요일까지 오전 8시부터 오후 6시까지입니다.</p>
+                  <p>천문대의 웹사이트에 설명된 바와 같이, 이곳은 교육과 과학적 홍보에 중점을 둔 공공 시설이며, 문화적, 역사적, 오락적 공간이기도 합니다.</p>
+                  <p>또한, 올해는 천문학에 대한 관심을 북돋우는 50년의 역사를 기념하는 해입니다.</p>`,
+        backgroundImage: 'https://secti.df.gov.br/wp-conteudo/uploads/2017/09/WhatsApp-Image-2019-06-29-at-11.53.43-1.jpeg',
+    },
+    'como-chegar': {
+        title: "오시는 길",
+        content: `<h2>오시는 길</h2>
+                 <p>이용 가능한 버스 노선:  <strong>108, 208, 508</strong>. 브라질리아 버스 정류장 근처에 위치한 천문대는 도보로 쉽게 접근할 수 있습니다.</p>
+                  <p>건물은 3,000 제곱미터의 건축 면적을 가지고 있으며, TV 타워와 울리시스 기마랑이스 컨벤션 센터 사이의 좋은 위치에 있습니다.</p>`,
+        backgroundImage: 'https://cdn.jornaldebrasilia.com.br/wp-content/uploads/2021/10/11143208/PLANETARIO_FOTO-CLAUDIO-BERGER-scaled-1-e1633973556853.jpg',
+    },
+    'cupula': {
+        title: "돔",
+        content: `<h2>돔</h2>
+                  <p>플라네타리움의 돔은 우주에 대한 몰입형 경험을 제공하는 현대적인 프로젝터를 갖추고 있습니다.</p>`,
+        backgroundImage: 'https://perfildosmunicipios.com.br/wp-content/uploads/2019/07/F%C3%A9rias-no-Planet%C3%A1rio-um-encontro-l%C3%BAdico-e-educativo.jpg',
+    },
+    'visita-virtual': {
+        title: "가상 투어",
+        content: `<h2>가상 투어</h2>
+                  <p>플라네타리움의 가상 투어 비디오를 시청하세요:</p>
+                  <iframe width="560" height="315" src="https://www.youtube.com/embed/1jkkOVH0e9k?si=ig7f_in8jD5nuT5k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`,
+        backgroundImage: 'https://www.acordadf.com.br/wp-content/uploads/2021/07/4444CD2E-8FB5-4AB2-AC99-86DABB7E2C86.jpeg',
+    },
+    menu: ["플라네타리움", "오시는 길", "돔", "가상 투어"]
+};
+
+// Combine language data into one object
+const langData = {
+    'pt': langData_pt,
+    'en': langData_en,
+    'es': langData_es,
+    'ko': langData_ko
+};
+
+// Function to change the page content
+function changePage(page) {
+    const contentDiv = document.getElementById('dynamic-section');
+    const content = langData[currentLang][page];
+    document.getElementById('main-content').style.backgroundImage = `url(${content.backgroundImage})`;
+    contentDiv.innerHTML = content.content;
+    document.getElementById('header-title').textContent = content.title;
+    // Store the current page
+    currentPage = page;
+}
+
+// Function to update the navigation menu
+function updateMenu() {
+    const menuLinks = document.querySelectorAll('nav a');
+    const menuLabels = langData[currentLang].menu;
+    menuLinks.forEach((link, index) => {
+        link.textContent = menuLabels[index];
+        link.onclick = (event) => {
+            event.preventDefault(); // Prevent default link behavior
+            changePage(link.id.replace('link-', ''));
+        };
+    });
+}
+// Function to switch languages
+let currentLang = 'pt';
+let currentPage = 'planetario'; // Keep track of the current page
+function switchLanguage(lang) {
+    currentLang = lang;
+    updateMenu();
+    changePage(currentPage); // Load the current page in the new language
+}
+
+// Set up event listener for language selection
+document.getElementById('language-select').addEventListener('change', (event) => {
+    switchLanguage(event.target.value);
+});
+
+// Adjust font size
+let fontSize = 16; // Initial font size (in pixels)
+function decreaseFontSize() {
+    fontSize -= 2;
+    document.body.style.fontSize = fontSize + 'px';
+}
+
+function increaseFontSize() {
+    fontSize += 2;
+    document.body.style.fontSize = fontSize + 'px';
+}
+
+// Dark mode functionality
+let isDarkMode = false; // Track whether dark mode is active
+
+function toggleDarkMode() {
+    isDarkMode = !isDarkMode;
+    if (isDarkMode) {
+        document.body.style.backgroundColor = '#222';
+        document.body.style.color = '#fff';
+        document.getElementById('header-title').style.color = '#fff';
+        document.getElementById('header-title').style.backgroundColor = '#000';
+        document.querySelectorAll('nav a').forEach(link => {
+            link.style.color = '#fff';
+        });
+        document.getElementById('main-content').style.backgroundColor = '#333';
+        document.querySelectorAll('main p').forEach(paragraph => {
+            paragraph.style.color = '#fff';
+        });
+        document.getElementById('darkModeButton').style.backgroundColor = '#fff';
+        document.getElementById('darkModeButton').style.color = '#000';
+
+        // Add more styling for other elements as needed
+    } else {
+        document.body.style.backgroundColor = '#f0f0f0';
+        document.body.style.color = '#333';
+        document.getElementById('header-title').style.color = '#333';
+        document.getElementById('header-title').style.backgroundColor = '#f0f0f0';
+        document.querySelectorAll('nav a').forEach(link => {
+            link.style.color = '#7a5c95';
+        });
+        document.getElementById('main-content').style.backgroundColor = '#f0f0f0';
+        document.querySelectorAll('main p').forEach(paragraph => {
+            paragraph.style.color = '#333';
+        });
+        document.getElementById('darkModeButton').style.backgroundColor = '#7a5c95';
+        document.getElementById('darkModeButton').style.color = '#fff';
+        // Reset styling for other elements
+    }
+}
+
+// Back to Top Button
+const backToTopButton = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 100) {
+        backToTopButton.style.display = 'block';
+    } else {
+        backToTopButton.style.display = 'none';
+    }
+});
+
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Initial setup
+updateMenu();
+changePage('planetario');
+    </script>
+
+</body>
+</html>
